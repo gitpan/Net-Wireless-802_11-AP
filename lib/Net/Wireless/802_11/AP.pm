@@ -10,11 +10,11 @@ Net::Wireless::802_11::AP - Provides a OO representation to 802.11 AP based on W
 
 =head1 VERSION
 
-Version 0.0.0
+Version 0.1.0
 
 =cut
 
-our $VERSION = '0.0.0';
+our $VERSION = '0.1.0';
 
 
 =head1 SYNOPSIS
@@ -158,6 +158,49 @@ sub new{
 			wep_key1=>1,
 			wep_key2=>1,
 			wep_key4=>1,
+		},
+		wpaKeys=>{
+			ssid=>1,
+			scan_ssid=>1,
+			bssid=>1,
+			priority=>1,
+			mode=>1,
+			proto=>1,
+			key_mgmt=>1,
+			auth_alg=>1,
+			pairwise=>1,
+			group=>1,
+			psk=>1,
+			eapol_flags=>1,
+			eap=>1,
+			identity=>1,
+			anonymous_identity=>1,
+			mixed_cell=>1,
+			password=>1,
+			ca_cert=>1,
+			client_cert=>1,
+			private_key=>1,
+			private_key_passwd=>1,
+			dh_file=>1,
+			subject_match=>1,
+			phase1=>1,
+			phase2=>1,
+			ca_cert2=>1,
+			client_cert2=>1,
+			private_key2=>1,
+			private_key2_passwd=>1,
+			dh_file2=>1,
+			subject_match2=>1,
+			eappsk=>1,
+			nai=>1,
+			server_nai=>1,
+			pac_file=>1,
+			eap_workaround=>1,
+			wep_tx_keyidx=>1,
+			wep_key0=>1,
+			wep_key1=>1,
+			wep_key2=>1,
+			wep_key4=>1,
 		}
 	};
 	bless $self;
@@ -267,6 +310,48 @@ sub listKeys{
 	}
 
 	return %toreturn;
+}
+
+=head2 listValidKeys
+
+This list the valid key possibilities.
+
+The returned value is a array.
+
+    my @validKeys=$foo->listValidKeys;
+
+=cut
+
+sub listValidKeys{
+    my $self=$_[0];
+
+    #try to blank the previous error
+    if( ! $self->errorblank ){
+        return undef;
+    }
+
+    return keys( %{ $self->{valid} } );
+}
+
+=head2 listWPAkeys
+
+This is very similar to listValidKeys, but it does not include
+'networkID', which represents the WPA supplicant network ID in
+the config file, but is not a valid key in the the config.
+
+    my @WPAkeys=$foo->listWPAkeys;
+
+=cut
+
+sub listWPAkeys{
+    my $self=$_[0];
+
+    #try to blank the previous error
+    if( ! $self->errorblank ){
+        return undef;
+    }
+
+    return keys( %{ $self->{wpaKeys} } );
 }
 
 =head2 setKey
