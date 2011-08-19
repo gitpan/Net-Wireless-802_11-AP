@@ -8,12 +8,13 @@ WriteMakefile(
     VERSION_FROM        => 'lib/Net/Wireless/802_11/AP.pm',
     ABSTRACT_FROM       => 'lib/Net/Wireless/802_11/AP.pm',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002
-      ? ('LICENSE'=> 'perl')
-      : ()),
+	 ? ('LICENSE'=> 'perl')
+	 : ()),
     PL_FILES            => {},
     PREREQ_PM => {
-        'Test::More' => 0,
+        'Test::More'=>0,
+		'Error::Helper'=>0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Net-Wireless-802_11-AP-*' },
-);
+	);

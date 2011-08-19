@@ -10,11 +10,11 @@ Net::Wireless::802_11::AP - Provides a OO representation to 802.11 AP based on W
 
 =head1 VERSION
 
-Version 0.1.0
+Version 0.1.1
 
 =cut
 
-our $VERSION = '0.1.0';
+our $VERSION = '0.1.1';
 
 
 =head1 SYNOPSIS
@@ -389,7 +389,7 @@ sub setKey{
     }
 
     #make sure it is a valid key
-    if(!defiend( $self->{valid}{$key} )){
+    if(!defined( $self->{valid}{$key} )){
         $self->{error}=2;
         $self->{errorString}='"'.$key.'" is not a valid key';
         return undef;
